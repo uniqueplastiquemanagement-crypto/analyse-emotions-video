@@ -1,0 +1,38 @@
+MOTEUR D'ANALYSE VIDÉO — UNIQUE PLASTIQUE
+Préparé par Claude le 19 novembre 2026.
+
+À QUOI ÇA SERT
+Analyser une vidéo sur ce Mac, sans rien envoyer ailleurs : images (une par seconde, mesures du Aesthetics
+Toolbox, mouvement, coupes), paroles (Whisper large-v3-turbo, mot par mot), son (volume, débit, silences,
+bruits et musique avec earshot). Claude lit ensuite ces résultats pour noter les émotions et publier la page.
+
+INSTALLER (une seule fois)
+1. Double-clique « Installer.command ». Si macOS refuse de l'ouvrir : clic droit sur le fichier, puis Ouvrir.
+2. Laisse le Mac ouvert, branché et en ligne. Environ 3 Go se téléchargent.
+3. À la fin, quitte l'app Claude (Cmd+Q) et rouvre-la.
+4. Dis à Claude : « l'installation est faite ».
+
+S'EN SERVIR
+Dépose une vidéo dans le dossier « videos », puis demande à Claude de l'analyser.
+Les résultats arrivent dans « resultats », un dossier par vidéo.
+
+CE QUE L'INSTALLATEUR TOUCHE
+- Ce dossier (Claude/analyse-video) : Python, bibliothèques, modèles du Toolbox.
+- ~/.local/bin/uv : le gestionnaire de paquets, s'il n'était pas déjà installé.
+- ~/.cache/huggingface et ~/.cache/earshot : les modèles téléchargés (environ 3 Go).
+- ~/Library/Application Support/Claude/claude_desktop_config.json : ajoute le connecteur « analyse-video ».
+  Une copie de sauvegarde du fichier est faite juste à côté avant toute modification.
+
+AJOUTER LE CONNECTEUR À LA MAIN (si l'étape 8 a échoué)
+Dans l'app Claude : Réglages > Développeur > Modifier la configuration, puis ajouter dans "mcpServers" :
+  "analyse-video": {
+    "command": "<chemin du dossier>/.venv/bin/python",
+    "args": ["<chemin du dossier>/moteur/serveur.py"]
+  }
+
+DÉSINSTALLER
+Supprimer ce dossier, retirer « analyse-video » de la configuration de Claude, et au besoin supprimer
+~/.cache/huggingface/hub/models--mlx-community--whisper-large-v3-turbo et ~/.cache/earshot.
+
+EN CAS DE PROBLÈME
+Tout est écrit dans « installation.log » et « etat-installation.txt ». Claude peut les lire.

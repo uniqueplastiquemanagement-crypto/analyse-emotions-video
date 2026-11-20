@@ -1,0 +1,14 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+# Rien de ce qui suit ne doit entrer dans le dépôt : vidéos, résultats, statistiques, transcriptions
+moteur/videos/
+moteur/resultats/
+moteur/moteur/toolbox/
+moteur/installation.log
+moteur/etat-installation.txt
+*.mp4
+*.mov
+*.webm
+*.jsonl
